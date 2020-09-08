@@ -60,13 +60,15 @@ class Raytracer(object):
             self.framebuffer[y][x] = color or self.current_color
         except:
             pass
-
+    
+    #Ver si hay objeto y donde
     def scene_intersect(self, orig, direction):
       for obj in self.scene:
         if obj.ray_intersect(orig, direction): 
           return obj.material
       return None
     
+    #Renderizar con material
     def cast_ray(self, orig, direction):
         impacted_material = self.scene_intersect(orig, direction)
         if impacted_material:
@@ -90,14 +92,17 @@ r = Raytracer(1000, 1000)
 r.scene = [
     #Face
     Sphere(V3(0, -3, -10), 0.2, orange),
-    Sphere(V3(0.5, -3.4, -10), 0.1, black),
-    Sphere(V3(-0.5, -3.4, -10), 0.1, black),
+    Sphere(V3(0.5, -3.5, -10), 0.1, black),
+    Sphere(V3(-0.5, -3.5, -10), 0.1, black),
     #Smile
-    Sphere(V3(-0.5, -2.7, -10), 0.1, black),
-    Sphere(V3(-0.2, -2.6, -10), 0.1, black),
-    Sphere(V3(0.2, -2.6, -10), 0.1, black),
-    Sphere(V3(0.5, -2.7, -10), 0.1, black),
-
+    Sphere(V3(-0.5, -2.5, -10), 0.1, black),
+    Sphere(V3(-0.2, -2.4, -10), 0.1, black),
+    Sphere(V3(0.2, -2.4, -10), 0.1, black),
+    Sphere(V3(0.5, -2.5, -10), 0.1, black),
+    #Buttons
+    Sphere(V3(0, 0, -10), 0.3, black),
+    Sphere(V3(0, 1.5, -10), 0.3, black),
+    Sphere(V3(0, 3, -10), 0.3, black),
     #Body
     Sphere(V3(0, 3, -10), 2.5, white),
     Sphere(V3(0, 0, -10), 2, white),
